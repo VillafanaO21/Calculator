@@ -32,11 +32,31 @@
 <script>
     const a = document.getElementById('a');
     const b = document.getElementById('b');
-    const ans = document.querySelector(`p`);
+    const ans = document.querySelector('p');
     const calculateButton = document.getElementById('calc');
     const clearButton = document.getElementById('clear');
 
 
+    calculateButton.addEventListener('click', function (e) {
+        let sideA = +a.value;
+        let sideB = +b.value;
+        ans.classList.remove("hidden")
+
+        if (!checkIsValid(sideA) || !checkIsValid(sideB)) {
+            ans.textContent = 'Invalid Inputs';
+            return;
+        }
+        let area = sideA * sideB;
+        ans.textContent = `The area of the rectangle is ${area}`;
+        return;
+    })
+
+    clearButton.addEventListener('click', function (e) {
+        a.value = " ";
+        b.value = " ";
+        ans.textContent = " ";
+        ans.classList.add("hidden");
+    })
 
     function checkIsValid(num) {
         if (isNaN(num)) {
@@ -45,28 +65,9 @@
         if (num <= 0) {
             return false
         }
-        return true;
+        return true
     }
 
-    calculateButton.addEventListener('click', function (e) {
-        let sideA = +a.value;
-        let sideB = +b.value;
-        let sideC = +c.value;
-        ans.classList.remove("hidden")
-        let are = sideA * sideB;
-    }
-        if (!checkIsValid(sideA) || !checkIsValid(sideC)) {
-            ans.textContent = 'Invalid Inputs';
-            return;
-        }
-        ans.textContent(`The area of the rectangle is ${area}`)
 
-    clearButton.addEventListener('click', function (e) {
-        a.value = " ";
-        b.value = " ";
-        c.value = " ";
-        ans.textContent = "";
-        ans.classList.add("hidden");
-    })
 </script>
 </body>
